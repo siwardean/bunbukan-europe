@@ -1,61 +1,57 @@
-# Bunbukan Brussels Theme
+# Bunbukan Europe (theme)
 
-WordPress theme for Bunbukan Brussels, part of Budo Club Berchem - Traditional Okinawan Martial Arts (Shitō-Ryū Karate & Ryūkyū Kobudō)
+WordPress theme for **Bunbukan Europe** — official European representation of Bunbukan Okinawa. Traditional Okinawan Martial Arts: Ryūkyū Kobudō.
 
-## Overview
+**Theme name:** Bunbukan Europe  
+**Text domain:** `bunbukan-europe`  
+**Author:** Bunbukan Europe Organization  
+**Author URI:** https://bunbukan.eu  
+**Version:** 1.0.0  
 
-This theme is based on the Nutriflow theme structure and adapted for Bunbukan Brussels (part of Budo Club Berchem, founded in 1977). It features:
-- Modern design inspired by kabuki.es
-- Content migrated from React/Node.js version
-- Traditional martial arts aesthetic
-- Responsive layout
+---
 
-## Installation
+## Description
 
-1. Copy this theme folder to your WordPress installation's `wp-content/themes/` directory
-2. If using Local WP, ensure the theme is in the correct site's theme directory
-3. Activate the theme in WordPress Admin → Appearance → Themes
+Modern, responsive theme inspired by [kabuki.es](https://kabuki.es), with a dark/red palette and custom typography (Naganoshi, Bebas Neue, Noto Sans JP). Structure based on Nutriflow, adapted for traditional Okinawan martial arts and European representation.
 
-## Required Assets
+---
 
-Make sure to copy the following image to `wp-content/themes/bunbukan/assets/images/`:
-- `okinawa-gate.jpg` - Background image for hero section (from C:\Users\alain\Downloads\okinawa-gate.jpg)
+## Structure
 
-## Development
+- **Templates:** `front-page.php`, `header.php`, `footer.php`, `index.php`, `sidebar.php`
+- **Template parts:** `template-parts/` (e.g. cookie consent, content templates)
+- **Inc:** `inc/pods-migration-data.php` — Pods migration and pre-fill helpers (Tools → Migration Pods (Europe))
+- **Assets:** `assets/js/` (includes `locations-map.js`), `assets/images/`, `assets/fonts/`
+- **Languages:** `languages/` — translation-ready with `.pot` and locale files (EN, FR, NL)
 
-This theme uses:
-- WordPress Block Editor (Gutenberg) support
-- Pods Framework for custom fields (optional)
-- Custom CSS for styling
-- Modern JavaScript for interactions
+---
 
-## Content Structure
+## Features
 
-The theme includes sections for:
-- Home/Hero section
-- About
-- Disciplines (Karate & Kobudō)
-- Dojo (Schedule & Location)
-- Instructors
-- Affiliations
-- Contact
+- Custom front page and layout consistent with Bunbukan Brussels theme
+- **Pods integration:** same field structure as Brussels; use **Tools → Migration Pods (Europe)** to pre-fill the front page with Europe default content (hero, about, disciplines, contact, affiliations). Only empty fields are filled.
+- **Translation-ready** with text domain `bunbukan-europe`; `.pot` and locale files (EN, FR, NL) in `languages/`
+- **Cookie consent banner** (template part + JS); respects user choice and stores preference
+- **Language selector** in footer (Polylang integration or locale fallback: FR, EN, NL, JA)
+- Locations map functionality (`assets/js/locations-map.js`)
+- Asset helpers and optional sync from a React build when available
 
-## Color Scheme
+---
 
-Inspired by kabuki.es and traditional martial arts:
-- Primary Red: #dc2626 (--brand-red)
-- Black: #111827 (--brand-black)
-- White: #f9fafb (--brand-white)
-- Light Gray: #f3f4f6 (--brand-light-gray)
+## Requirements
 
-## Typography
+- WordPress (version supported by your environment)
+- PHP (version required by WordPress)
+- **Recommended:** [Pods – Custom Content Types and Fields](https://pods.io/) — for editable front-page content and migration (Tools → Migration Pods (Europe))
+- **Recommended:** [Polylang](https://wordpress.org/plugins/polylang/) or [WPML](https://wpml.org/) for full multilingual support
+- Optional: React build for shared assets
 
-- Japanese text: Noto Sans JP
-- Body text: Inter
+After activating the theme, set a front page in **Settings → Reading**, then run **Tools → Migration Pods (Europe)** once to pre-fill Pods fields with Europe defaults. Edit the front page to customize content.
 
-## Notes
+Translations are loaded from `languages/bunbukan-europe-{locale}.po` (compile to `.mo` with Poedit or `msgfmt` for production).
 
-- Theme is based on Nutriflow theme structure
-- Content migrated from React version in C:\Users\alain\Downloads\bunbukan_eu
-- Design inspired by kabuki.es
+---
 
+## License
+
+**Proprietary — All rights reserved.** This theme is not open source. It is for use by Bunbukan Europe / the karate club only. No redistribution or reuse without permission.

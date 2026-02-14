@@ -262,6 +262,16 @@ function bunbukan_scripts()
 		wp_enqueue_script('bunbukan-locations-map', get_template_directory_uri() . '/assets/js/locations-map.js', array('leaflet-js'), $map_script_ver, true);
 	}
 
+	// Cookie consent script
+	if (file_exists(get_template_directory() . '/assets/js/cookie-consent.js')) {
+		$cookie_script_ver = BUNBUKAN_EUROPE_VERSION;
+		$cookie_script_path = get_template_directory() . '/assets/js/cookie-consent.js';
+		if (file_exists($cookie_script_path)) {
+			$cookie_script_ver = (string) filemtime($cookie_script_path);
+		}
+		wp_enqueue_script('bunbukan-cookie-consent', get_template_directory_uri() . '/assets/js/cookie-consent.js', array(), $cookie_script_ver, true);
+	}
+
 	if (is_singular() && comments_open() && get_option('thread_comments')) {
 		wp_enqueue_script('comment-reply');
 	}
@@ -316,12 +326,20 @@ function bunbukan_fallback_menu()
 function bunbukan_search_form($form)
 {
 	$form = '<form method="get" class="search-form" action="' . home_url('/') . '" >
-		<div role="search"><label for="Search">' . __('Search for:') . '</label>
+		<div role="search"><label for="Search">' . __('Search for:', 'bunbukan-europe') . '</label>
 			<input type="text" value="' . get_search_query() . '" name="s" id="Search" class="search-field">
-			<input type="submit" id="searchsubmit" value="' . esc_attr__('Submit') . '" class="search-submit">
+			<input type="submit" id="searchsubmit" value="' . esc_attr__('Submit', 'bunbukan-europe') . '" class="search-submit">
 		</div>
 	</form>';
 
 	return $form;
 }
 add_filter('get_search_form', 'bunbukan_search_form', 40);
+
+/**
+ * Pods & ACF: custom data and migration helpers (admin menu under Tools → Migration Pods).
+ */
+$pods_migration = get_template_directory() . '/inc/pods-migration-data.php';
+if (file_exists($pods_migration)) {
+	require_once $pods_migration;
+}

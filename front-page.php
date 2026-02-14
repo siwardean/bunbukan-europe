@@ -226,23 +226,26 @@ if (!function_exists('bunbukan_render_divider')) {
 
 			<div class="bb-disciplines__stack">
 				<?php
-				// Logo for background overlay
+				// Logo for background overlay (same fallback chain as Brussels theme)
 				$kobudo_logo =
 					bunbukan_attachment_url_by_slug('bunbukan-background-logo-copy')
-					?: bunbukan_find_image('bunbukan-background-logo-copy', array('/assets/images/', '/assets/images/logos/', '/bunbukan-eu/public/images/'))
 					?: bunbukan_find_image('bunbukan-bg-logo', array('/assets/images/', '/assets/images/logos/', '/bunbukan-eu/public/images/'))
-					?: bunbukan_find_image('bunbukan-logo', array('/assets/images/', '/assets/images/logos/', '/bunbukan-eu/public/images/'));
+					?: bunbukan_find_image('bunbukan-background-logo-copy', array('/assets/images/', '/assets/images/logos/', '/bunbukan-eu/public/images/'))
+					?: bunbukan_find_image('logo-bunbukan-bg', array('/assets/images/logos/', '/assets/images/'))
+					?: (function_exists('bunbukan_asset_url') ? bunbukan_asset_url('/assets/images/logos/logo-bunbukan-bg.png') : '');
 
 				$kobudo_image =
 					bunbukan_attachment_url_by_slug('makiwara-men-uchi')
-					?: bunbukan_find_image('makiwara-men-uchi', array('/assets/images/', '/assets/images/disciplines/', '/bunbukan-eu/public/images/'));
+					?: bunbukan_find_image('makiwara-men-uchi', array('/assets/images/', '/assets/images/disciplines/', '/bunbukan-eu/public/images/'))
+					?: bunbukan_find_image('discipline-kobudo', array('/assets/images/disciplines/', '/assets/images/'))
+					?: (function_exists('bunbukan_asset_url') ? bunbukan_asset_url('/assets/images/disciplines/discipline-kobudo.jpg') : '');
 
 				$diploma_image =
 					bunbukan_attachment_url_by_slug('diploma')
 					?: bunbukan_find_image('diploma', array('/assets/images/', '/assets/images/disciplines/', '/bunbukan-eu/public/images/'));
 				?>
 
-				<!-- Kobudo Row -->
+				<!-- Kobudo Row (mirror layout: card left, image right – same as Brussels) -->
 				<div class="bb-discipline-row bb-discipline-row--kobudo">
 					<div class="bb-about__card bb-discipline-card bb-discipline-card--kobudo"
 						<?php echo $kobudo_logo ? 'style="--bb-disciplines-logo: url(\'' . esc_url($kobudo_logo) . '\');"' : ''; ?>>
@@ -251,9 +254,9 @@ if (!function_exists('bunbukan_render_divider')) {
 							<h3 class="bb-disciplines__title-jp japanese-font">琉球古武道</h3>
 							<h4 class="bb-disciplines__title"><?php echo esc_html__('Ryūkyū Kobudō', 'bunbukan-europe'); ?></h4>
 							<p class="bb-disciplines__since"><?php echo esc_html__('Since 2001', 'bunbukan-europe'); ?></p>
-						<p class="bb-disciplines__description bb-disciplines__description--left">
-							<?php echo esc_html__('Ryūkyū Kobudō is the traditional weapon art of Okinawa. At Bunbukan Europe, this discipline develops coordination, control, and body awareness through the study of classical weapon forms and their applications, in an authentic and traditional approach under the guidance of Nakamoto Masahiro.', 'bunbukan-europe'); ?>
-						</p>
+							<p class="bb-disciplines__description bb-disciplines__description--left">
+								<?php echo esc_html__('Ryūkyū Kobudō is the traditional weapon art of Okinawa. At Bunbukan Europe, this discipline develops coordination, control, and body awareness through the study of classical weapon forms and their applications, in an authentic and traditional approach under the guidance of Nakamoto Masahiro.', 'bunbukan-europe'); ?>
+							</p>
 						</div>
 					</div>
 					<div class="bb-discipline-row__image bb-discipline-row__image--kobudo bb-scroll-reveal bb-scroll-reveal--right">
@@ -265,16 +268,23 @@ if (!function_exists('bunbukan_render_divider')) {
 				</div>
 
 				<?php if ($diploma_image): ?>
-					<div class="bb-disciplines__diploma-wrapper bb-scroll-reveal bb-scroll-reveal--up" data-delay="200">
-						<div class="bb-disciplines__diploma">
-							<div class="bb-disciplines__diploma-image">
+					<!-- Diploma row: same structure as Karate row (image left, card right) -->
+					<div class="bb-disciplines__diploma-wrapper">
+						<div class="bb-discipline-row bb-discipline-row--karate">
+							<div class="bb-discipline-row__image bb-discipline-row__image--karate bb-scroll-reveal bb-scroll-reveal--left">
 								<img src="<?php echo esc_url($diploma_image); ?>"
 									alt="<?php echo esc_attr__('Kobudō diploma', 'bunbukan-europe'); ?>" loading="lazy" />
 							</div>
-							<div class="bb-disciplines__diploma-content">
-								<p class="bb-disciplines__diploma-description">
-									<?php echo esc_html__('Our practitioners receive authentic Ryūkyū Kobudō diplomas awarded by the master of the Bunbukan Honbu Dōjō in Naha, Okinawa.', 'bunbukan-europe'); ?>
-								</p>
+							<div class="bb-about__card bb-discipline-card"<?php echo $kobudo_logo ? ' style="--bb-disciplines-logo: url(\'' . esc_url($kobudo_logo) . '\');"' : ''; ?>>
+								<div class="bb-discipline-card__bg-logo"></div>
+								<div class="bb-discipline-card__content">
+									<h3 class="bb-disciplines__title-jp japanese-font">免許状</h3>
+									<h4 class="bb-disciplines__title"><?php echo esc_html__('Diplomas', 'bunbukan-europe'); ?></h4>
+									<p class="bb-disciplines__diploma-tagline"><?php echo esc_html__('A certificate of authenticity', 'bunbukan-europe'); ?></p>
+									<p class="bb-disciplines__description">
+										<?php echo esc_html__('Our practitioners receive authentic Ryūkyū Kobudō diplomas awarded by the master of the Bunbukan Honbu Dōjō in Naha, Okinawa.', 'bunbukan-europe'); ?>
+									</p>
+								</div>
 							</div>
 						</div>
 					</div>

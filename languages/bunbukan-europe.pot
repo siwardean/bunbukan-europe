@@ -1,0 +1,64 @@
+# Copyright (C) 2026 Bunbukan Europe
+# This file is distributed under the same license as the Bunbukan Europe theme.
+msgid ""
+msgstr ""
+"Project-Id-Version: Bunbukan Europe 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-14 12:00+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Bunbukan Europe theme\n"
+"X-Domain: bunbukan-europe\n"
+
+#: header.php
+msgid "Skip to content"
+msgstr ""
+
+#: header.php
+msgid "Language switcher"
+msgstr ""
+
+#: header.php
+msgid "Primary Menu"
+msgstr ""
+
+#: template-parts/cookie-consent.php
+msgid "Cookie Consent"
+msgstr ""
+
+#: template-parts/cookie-consent.php
+msgid "We use cookies to enhance your browsing experience and remember your language preference. By clicking \"Accept\", you consent to our use of cookies."
+msgstr ""
+
+#: template-parts/cookie-consent.php
+msgid "Accept"
+msgstr ""
+
+#: template-parts/cookie-consent.php
+msgid "Decline"
+msgstr ""
+
+#: template-parts/cookie-consent.php
+msgid "Accept cookies"
+msgstr ""
+
+#: template-parts/cookie-consent.php
+msgid "Decline cookies"
+msgstr ""
+
+#: footer.php
+msgid "Select language"
+msgstr ""
+
+#: functions.php
+msgid "Search for:"
+msgstr ""
+
+#: functions.php
+msgid "Submit"
+msgstr ""

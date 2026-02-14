@@ -251,6 +251,44 @@
 		headers.forEach(header => observer.observe(header));
 	}
 
+	// Language dropdown in footer (opens upward)
+	function initLanguageDropdown() {
+		const dropdowns = document.querySelectorAll('[data-dropdown]');
+		dropdowns.forEach(function (dropdown) {
+			const toggle = dropdown.querySelector('.language-dropdown__toggle');
+			if (!toggle) return;
+			toggle.addEventListener('click', function (e) {
+				e.stopPropagation();
+				const isOpen = dropdown.hasAttribute('data-open');
+				dropdowns.forEach(function (d) {
+					d.removeAttribute('data-open');
+					var t = d.querySelector('.language-dropdown__toggle');
+					if (t) t.setAttribute('aria-expanded', 'false');
+				});
+				if (!isOpen) {
+					dropdown.setAttribute('data-open', '');
+					toggle.setAttribute('aria-expanded', 'true');
+				}
+			});
+		});
+		document.addEventListener('click', function () {
+			dropdowns.forEach(function (d) {
+				d.removeAttribute('data-open');
+				var t = d.querySelector('.language-dropdown__toggle');
+				if (t) t.setAttribute('aria-expanded', 'false');
+			});
+		});
+		document.addEventListener('keydown', function (e) {
+			if (e.key === 'Escape') {
+				dropdowns.forEach(function (d) {
+					d.removeAttribute('data-open');
+					var t = d.querySelector('.language-dropdown__toggle');
+					if (t) t.setAttribute('aria-expanded', 'false');
+				});
+			}
+		});
+	}
+
 	// Initialize on DOM ready
 	if (document.readyState === 'loading') {
 		document.addEventListener('DOMContentLoaded', function () {
@@ -262,6 +300,7 @@
 			initStatCounters();
 			initFlipCards();
 			initSectionHeaders();
+			initLanguageDropdown();
 		});
 	} else {
 		initMobileMenu();
@@ -272,6 +311,7 @@
 		initStatCounters();
 		initFlipCards();
 		initSectionHeaders();
+		initLanguageDropdown();
 	}
 
 })();

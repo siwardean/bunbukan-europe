@@ -4,8 +4,8 @@ Author: Bunbukan Europe Organization
 Author URI: https://bunbukan.eu
 Description: WordPress theme for Bunbukan Europe - Official European Representation of Bunbukan Okinawa. Traditional Okinawan Martial Arts (Ryukyu Kobudo). Modern design inspired by kabuki.es.
 Version: 1.0.0
-License: GNU General Public License v2 or later
-License URI: LICENSE
+License: Proprietary - All rights reserved. For Bunbukan Europe / karate club use only.
+License URI:
 Text Domain: bunbukan-europe
 Tags: martial-arts, kobudo, traditional, modern, responsive
 
@@ -1349,13 +1349,15 @@ a:hover {
 	height: 100%;
 	object-fit: cover;
 	display: block;
-	filter: grayscale(1) contrast(1.05) brightness(0.9);
+	/* Muted colors, same as Brussels theme */
+	filter: saturate(0.5) brightness(0.85) contrast(0.95);
 	transition: filter 0.4s ease;
 }
 
 .bb-discipline-row:hover .bb-discipline-row__image img,
 .bb-discipline-row__image:hover img {
-	filter: none;
+	/* More vivid on hover, same as Brussels */
+	filter: saturate(1.2) brightness(1.05) contrast(1.1);
 }
 
 .bb-discipline-row__image--karate {
@@ -1390,6 +1392,8 @@ a:hover {
 	filter: grayscale(1) contrast(1.1);
 	pointer-events: none;
 	z-index: 0;
+	transition: transform 0.1s ease-out;
+	will-change: transform;
 }
 
 .bb-discipline-card__content {
@@ -1407,7 +1411,7 @@ a:hover {
 }
 
 .bb-discipline-card--kobudo .bb-disciplines__title-jp {
-	color: var(--bb-amber);
+	color: var(--bb-red);
 	text-shadow: none;
 }
 
@@ -1449,67 +1453,28 @@ a:hover {
 	text-align: left;
 }
 
-/* Diploma section in disciplines - placed after the discipline row */
+/* Diploma section: same structure as Karate row, no gap (rows touch like Bunbukan) */
 .bb-disciplines__diploma-wrapper {
-	margin-top: 3rem;
-	padding-top: 3rem;
-	border-top: 1px solid rgba(255, 255, 255, 0.1);
+	margin-top: 0;
+	padding-top: 0;
+	border-top: none;
 }
 
-.bb-disciplines__diploma {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 2.5rem;
-	max-width: 900px;
-	margin: 0 auto;
-	padding: 2rem;
-	background: rgba(0, 0, 0, 0.3);
-	border-radius: 0.5rem;
-	border: 1px solid rgba(255, 255, 255, 0.1);
+/* Tagline same style as .bb-disciplines__since (theme original) */
+.bb-disciplines__diploma-tagline {
+	display: inline-block;
+	font-size: 0.85rem;
+	color: var(--bb-text-muted);
+	text-transform: uppercase;
+	letter-spacing: 0.12em;
+	margin-bottom: 2rem;
+	padding: 0.4rem 0.75rem;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+	font-family: var(--font-body);
 }
 
-.bb-disciplines__diploma-image {
-	flex-shrink: 0;
-	width: 350px;
-	height: auto;
-}
-
-.bb-disciplines__diploma-image img {
-	width: 100%;
-	height: auto;
-	object-fit: contain;
-	border-radius: 0.5rem;
-	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-}
-
-.bb-disciplines__diploma-content {
-	flex: 1;
-}
-
-.bb-disciplines__diploma-description {
-	color: rgba(255, 255, 255, 0.9);
-	line-height: 1.7;
-	font-size: 1rem;
-	margin: 0;
-	text-align: left;
-}
-
-@media (max-width: 768px) {
-	.bb-disciplines__diploma {
-		flex-direction: column;
-		align-items: center;
-		gap: 1.5rem;
-		padding: 1.5rem;
-	}
-
-	.bb-disciplines__diploma-image {
-		width: 250px;
-	}
-
-	.bb-disciplines__diploma-description {
-		text-align: center;
-	}
+.bb-disciplines__diploma-wrapper .bb-disciplines__description {
+	text-align: right;
 }
 
 .bb-disciplines__features li {
@@ -1534,7 +1499,7 @@ a:hover {
 }
 
 .bb-discipline-card--kobudo .bb-disciplines__features strong {
-	color: var(--bb-amber);
+	color: var(--bb-red);
 }
 
 @media (max-width: 1024px) {
@@ -1584,6 +1549,21 @@ a:hover {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 	gap: 2rem;
+}
+
+/* Stack rows (Kobudo + Diploma): same card style as Karate row in bunbukan theme */
+.bb-disciplines__stack .bb-about__card.bb-discipline-card {
+	padding: 3rem;
+	border-radius: 12px;
+	background: rgba(0, 0, 0, 0.45);
+	backdrop-filter: blur(16px);
+	-webkit-backdrop-filter: blur(16px);
+	border: 1px solid rgba(255, 255, 255, 0.12);
+	box-shadow:
+		0 8px 32px rgba(0, 0, 0, 0.6),
+		inset 0 1px 0 rgba(255, 255, 255, 0.1);
+	transition: all 0.3s ease;
+	min-height: 400px;
 }
 
 .bb-discipline-card {
@@ -2502,4 +2482,215 @@ a:hover {
 	}
 }
 
+/* ============================================
+   Language selector – footer, opens upward
+   ============================================ */
+.site-footer__language {
+	margin-top: auto;
+	padding-top: 2rem;
+}
+
+.language-dropdown {
+	position: relative;
+	display: inline-block;
+}
+
+.language-dropdown__toggle {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	background: transparent;
+	border: none;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+	padding: 0.5rem 0;
+	color: var(--bb-text-muted);
+	font-size: 0.85rem;
+	font-family: var(--font-body);
+	cursor: pointer;
+	transition: all 0.2s ease;
+}
+
+.language-dropdown__toggle:hover {
+	color: var(--bb-text);
+	border-color: rgba(255, 255, 255, 0.3);
+}
+
+.language-dropdown__toggle[aria-expanded="true"] {
+	color: var(--bb-white-pure);
+	border-color: var(--bb-red);
+}
+
+.language-dropdown__toggle[aria-expanded="true"] svg {
+	stroke: var(--bb-red);
+	transform: rotate(180deg);
+}
+
+.language-dropdown__toggle svg {
+	transition: transform 0.2s ease, stroke 0.2s ease;
+}
+
+.language-dropdown__menu {
+	position: absolute;
+	bottom: 100%;
+	left: 0;
+	margin-bottom: 0.5rem;
+	padding: 0.5rem 0;
+	background: var(--bb-surface-2);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	border-radius: 4px;
+	list-style: none;
+	min-width: 140px;
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(10px);
+	transition: all 0.2s ease;
+	box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.language-dropdown[data-open] .language-dropdown__menu {
+	opacity: 1;
+	visibility: visible;
+	transform: translateY(0);
+}
+
+.language-dropdown__menu li {
+	margin: 0;
+	padding: 0;
+}
+
+.language-dropdown__menu a {
+	display: block;
+	padding: 0.5rem 1rem;
+	color: var(--bb-text-muted);
+	text-decoration: none;
+	font-size: 0.85rem;
+	transition: all 0.15s ease;
+}
+
+.language-dropdown__menu a:hover {
+	color: var(--bb-text);
+	background: rgba(255, 255, 255, 0.05);
+}
+
+.language-dropdown__menu a.is-active {
+	color: var(--bb-red);
+}
+
+/* ============================================
+   Cookie Consent Banner
+   ============================================ */
+.cookie-consent-banner {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 9999;
+	background: rgba(0, 0, 0, 0.95);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	border-top: 2px solid var(--bb-red);
+	padding: 1.5rem;
+	box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
+	transform: translateY(0);
+	opacity: 1;
+	transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.cookie-consent-content {
+	max-width: 1280px;
+	margin: 0 auto;
+	display: flex;
+	align-items: center;
+	gap: 2rem;
+	flex-wrap: wrap;
+}
+
+.cookie-consent-title {
+	margin: 0;
+	color: var(--bb-red);
+	font-size: 1.1rem;
+	font-family: var(--font-display);
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	flex-shrink: 0;
+}
+
+.cookie-consent-text {
+	flex: 1;
+	margin: 0;
+	color: var(--bb-text);
+	font-size: 0.9rem;
+	line-height: 1.6;
+	min-width: 200px;
+}
+
+.cookie-consent-actions {
+	display: flex;
+	gap: 1rem;
+	flex-shrink: 0;
+}
+
+.cookie-btn {
+	padding: 0.75rem 1.5rem;
+	border: 1px solid var(--bb-border);
+	background: rgba(255, 255, 255, 0.1);
+	color: var(--bb-text-strong);
+	cursor: pointer;
+	text-transform: uppercase;
+	font-weight: 600;
+	letter-spacing: 0.05em;
+	font-size: 0.85rem;
+	transition: all 0.3s ease;
+	font-family: var(--font-display);
+	border-radius: 4px;
+}
+
+.cookie-btn--accept {
+	background: var(--bb-red);
+	color: white;
+	border-color: var(--bb-red);
+}
+
+.cookie-btn--accept:hover {
+	background: var(--bb-red-dark);
+	border-color: var(--bb-red-dark);
+	transform: translateY(-1px);
+	box-shadow: 0 4px 12px rgba(196, 0, 0, 0.4);
+}
+
+.cookie-btn--decline:hover {
+	background: rgba(255, 255, 255, 0.2);
+	border-color: rgba(255, 255, 255, 0.3);
+}
+
+@media (max-width: 768px) {
+	.cookie-consent-banner {
+		padding: 1rem;
+	}
+	
+	.cookie-consent-content {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 1rem;
+	}
+	
+	.cookie-consent-title {
+		font-size: 1rem;
+	}
+	
+	.cookie-consent-text {
+		font-size: 0.85rem;
+		width: 100%;
+	}
+	
+	.cookie-consent-actions {
+		width: 100%;
+	}
+	
+	.cookie-btn {
+		flex: 1;
+		padding: 0.75rem 1rem;
+		font-size: 0.8rem;
+	}
+}
 

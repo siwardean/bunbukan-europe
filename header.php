@@ -66,7 +66,7 @@
 			</nav>
 
 			<?php if ( function_exists( 'pll_the_languages' ) ) : ?>
-				<div class="bb-lang-switcher" aria-label="<?php echo esc_attr__( 'Language switcher', 'bunbukan' ); ?>">
+				<div class="bb-lang-switcher" aria-label="<?php echo esc_attr__( 'Language switcher', 'bunbukan-europe' ); ?>">
 					<?php pll_the_languages( array( 'show_flags' => 1, 'show_names' => 0, 'dropdown' => 0 ) ); ?>
 				</div>
 			<?php endif; ?>
