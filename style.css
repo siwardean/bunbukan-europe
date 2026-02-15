@@ -1502,6 +1502,238 @@ a:hover {
 	color: var(--bb-red);
 }
 
+/* ============================================
+   Weapons (subsection inside Disciplines) - Coverflow 3D, infinite loop
+   ============================================ */
+.bb-disciplines__weapons {
+	margin-top: 4rem;
+	padding-top: 3rem;
+	border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.bb-disciplines__weapons-header {
+	text-align: center;
+	margin-bottom: 3rem;
+}
+
+.bb-disciplines__weapons-title {
+	font-family: var(--font-display);
+	font-size: clamp(2rem, 4.5vw, 3rem);
+	letter-spacing: 0.08em;
+	color: var(--bb-white-pure);
+	margin: 0 0 1rem;
+	line-height: 1.1;
+}
+
+.bb-disciplines__weapons-title.gradient-text {
+	font-family: var(--font-script);
+}
+
+.bb-disciplines__weapons-divider {
+	width: 96px;
+	height: 3px;
+	background: linear-gradient(90deg, transparent, var(--bb-red), transparent);
+	margin: 0 auto 1.5rem;
+	box-shadow: 0 10px 30px rgba(196, 0, 0, 0.18);
+}
+
+.bb-disciplines__weapons-subtitle {
+	font-family: var(--font-body);
+	font-size: 1.2rem;
+	letter-spacing: 0.04em;
+	line-height: 1.6;
+	color: var(--bb-text-muted);
+	margin: 0;
+	max-width: 800px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.bb-weapons {
+	overflow: hidden;
+}
+
+.bb-coverflow {
+	position: relative;
+	margin: 0 0 4rem;
+	min-height: 540px;
+	perspective: 1500px;
+}
+
+.bb-coverflow__viewport {
+	perspective: 1500px;
+	overflow: visible;
+	padding: 3.5rem 0;
+}
+
+.bb-coverflow__track {
+	position: relative;
+	min-height: 480px;
+	transform-style: preserve-3d;
+}
+
+.bb-coverflow--no-transition .bb-coverflow__card {
+	transition: none;
+}
+
+.bb-coverflow__card {
+	position: absolute;
+	width: 400px;
+	flex-shrink: 0;
+	background: var(--bb-surface-2);
+	border-radius: 16px;
+	overflow: hidden;
+	box-shadow: 0 28px 72px rgba(0, 0, 0, 0.65);
+	transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.4s ease, z-index 0s 0.3s;
+	transform-style: preserve-3d;
+	left: 50%;
+	margin-left: -200px;
+}
+
+.bb-coverflow__card-image {
+	position: relative;
+	width: 100%;
+	aspect-ratio: 4 / 3;
+	overflow: hidden;
+	background: var(--bb-black);
+	border-radius: 16px 16px 0 0;
+	flex-shrink: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.bb-coverflow__card-image img {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	object-position: center center;
+	display: block;
+}
+
+.bb-coverflow__card-overlay {
+	position: relative;
+	padding: 1.6rem 1.6rem 1.85rem;
+	background: linear-gradient(to top, rgba(0, 0, 0, 0.96), rgba(0, 0, 0, 0.88));
+	color: var(--bb-text);
+}
+
+.bb-coverflow__card-title-jp {
+	font-family: var(--font-japanese);
+	font-size: 2.35rem;
+	color: var(--bb-red);
+	margin: 0 0 0.35rem;
+	line-height: 1.2;
+}
+
+.bb-coverflow__card-title {
+	font-family: var(--font-display);
+	font-size: 1.85rem;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	margin: 0 0 0.5rem;
+	color: var(--bb-white-pure);
+}
+
+.bb-coverflow__card-desc {
+	font-family: var(--font-body);
+	font-size: 1rem;
+	line-height: 1.6;
+	margin: 0;
+	color: var(--bb-text);
+}
+
+.bb-coverflow__nav {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 56px;
+	height: 56px;
+	border-radius: 50%;
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	background: rgba(0, 0, 0, 0.6);
+	backdrop-filter: blur(8px);
+	color: var(--bb-white-pure);
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 10;
+	transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.bb-coverflow__nav:hover {
+	background: var(--bb-red);
+	border-color: var(--bb-red);
+	color: var(--bb-white-pure);
+}
+
+.bb-coverflow__nav--prev {
+	left: 0.5rem;
+}
+
+.bb-coverflow__nav--next {
+	right: 0.5rem;
+}
+
+.bb-coverflow__nav svg {
+	width: 28px;
+	height: 28px;
+}
+
+@media (max-width: 1024px) {
+	.bb-coverflow__card {
+		width: 340px;
+		margin-left: -170px;
+	}
+	.bb-coverflow {
+		min-height: 480px;
+	}
+	.bb-coverflow__track {
+		min-height: 440px;
+	}
+}
+
+@media (max-width: 768px) {
+	.bb-disciplines__weapons-title {
+		font-size: clamp(1.75rem, 5vw, 2.25rem);
+	}
+	.bb-disciplines__weapons-subtitle {
+		font-size: 1.1rem;
+	}
+	.bb-coverflow__card {
+		width: 280px;
+		margin-left: -140px;
+	}
+	.bb-coverflow__card-title-jp {
+		font-size: 1.85rem;
+	}
+	.bb-coverflow__card-title {
+		font-size: 1.4rem;
+	}
+	.bb-coverflow__card-desc {
+		font-size: 0.9rem;
+	}
+	.bb-coverflow {
+		min-height: 400px;
+	}
+	.bb-coverflow__track {
+		min-height: 360px;
+	}
+	.bb-coverflow__nav {
+		width: 48px;
+		height: 48px;
+		left: 0.25rem;
+	}
+	.bb-coverflow__nav--next {
+		right: 0.25rem;
+	}
+	.bb-coverflow__nav svg {
+		width: 24px;
+		height: 24px;
+	}
+}
+
 @media (max-width: 1024px) {
 	.bb-disciplines__grid {
 		grid-template-columns: 1fr;

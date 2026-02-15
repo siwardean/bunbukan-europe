@@ -289,6 +289,90 @@ if (!function_exists('bunbukan_render_divider')) {
 						</div>
 					</div>
 				<?php endif; ?>
+
+				<!-- Weapons subsection (coverflow 3D, infinite loop) -->
+				<div id="weapons" class="bb-disciplines__weapons bb-weapons">
+					<div class="bb-disciplines__weapons-header">
+						<h2 class="bb-disciplines__weapons-title gradient-text"><?php echo esc_html__('Weapons', 'bunbukan-europe'); ?></h2>
+						<div class="bb-disciplines__weapons-divider"></div>
+						<p class="bb-disciplines__weapons-subtitle"><?php echo esc_html__('Classical weapons of Ryūkyū Kobudō', 'bunbukan-europe'); ?></p>
+					</div>
+					<?php
+					$weapons = array(
+						array(
+							'name' => __('Bō', 'bunbukan-europe'),
+							'name_jp' => '棒',
+							'description' => __('The long staff, fundamental to Ryūkyū Kobudō. Used for striking, blocking and sweeping techniques.', 'bunbukan-europe'),
+							'image' => (function_exists('bunbukan_find_image') ? bunbukan_find_image('bo', array('/assets/images/weapons/')) : '') ?: bunbukan_attachment_url_by_slug('bo-staff'),
+						),
+						array(
+							'name' => __('Sai', 'bunbukan-europe'),
+							'name_jp' => '釵',
+							'description' => __('A three-pronged metal truncheon. Effective for blocking and trapping weapons.', 'bunbukan-europe'),
+							'image' => (function_exists('bunbukan_find_image') ? bunbukan_find_image('sai', array('/assets/images/weapons/')) : '') ?: bunbukan_attachment_url_by_slug('sai'),
+						),
+						array(
+							'name' => __('Tonfa', 'bunbukan-europe'),
+							'name_jp' => 'トンファー',
+							'description' => __('The side-handle baton. Rotating and striking techniques with versatile applications.', 'bunbukan-europe'),
+							'image' => (function_exists('bunbukan_find_image') ? bunbukan_find_image('tonfa', array('/assets/images/weapons/')) : '') ?: bunbukan_attachment_url_by_slug('tonfa'),
+						),
+						array(
+							'name' => __('Nunchaku', 'bunbukan-europe'),
+							'name_jp' => 'ヌンチャク',
+							'description' => __('Two short sticks connected by a chain or cord. Develops speed, coordination and flow.', 'bunbukan-europe'),
+							'image' => (function_exists('bunbukan_find_image') ? bunbukan_find_image('nunchaku', array('/assets/images/weapons/')) : '') ?: bunbukan_attachment_url_by_slug('nunchaku'),
+						),
+						array(
+							'name' => __('Kama', 'bunbukan-europe'),
+							'name_jp' => '鎌',
+							'description' => __('The Okinawan sickle. Cutting and hooking techniques derived from agricultural tools.', 'bunbukan-europe'),
+							'image' => (function_exists('bunbukan_find_image') ? bunbukan_find_image('kama', array('/assets/images/weapons/')) : '') ?: bunbukan_attachment_url_by_slug('kama'),
+						),
+						array(
+							'name' => __('Tinbe & Rochin', 'bunbukan-europe'),
+							'name_jp' => 'ティンベー・ローチン',
+							'description' => __('Shield and short spear. Traditional Okinawan combination for blocking and thrusting.', 'bunbukan-europe'),
+							'image' => (function_exists('bunbukan_find_image') ? bunbukan_find_image('tinbe-rochin', array('/assets/images/weapons/')) : '') ?: bunbukan_attachment_url_by_slug('tinbe-rochin'),
+						),
+					);
+					// Duplicate for infinite loop (no visible start/end)
+					$weapons = array_merge($weapons, $weapons);
+					// Placeholder SVG with weapon name when no image in assets/images/weapons/
+					$weapons_placeholder_svg = function ($name, $name_jp) {
+						$name = str_replace(array('&', '<', '>', '"'), array('&amp;', '&lt;', '&gt;', '&quot;'), $name);
+						$name_jp = str_replace(array('&', '<', '>', '"'), array('&amp;', '&lt;', '&gt;', '&quot;'), $name_jp);
+						$svg = '<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"><rect fill="#1a1a1a" width="400" height="300"/><text x="50%" y="42%" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="28" font-family="sans-serif">' . $name_jp . '</text><text x="50%" y="55%" text-anchor="middle" fill="rgba(255,255,255,0.9)" font-size="32" font-weight="bold">' . $name . '</text></svg>';
+						return 'data:image/svg+xml,' . rawurlencode($svg);
+					};
+					?>
+					<div class="bb-coverflow" id="bb-coverflow" role="region" aria-label="<?php echo esc_attr__('Weapons slider', 'bunbukan-europe'); ?>">
+						<button type="button" class="bb-coverflow__nav bb-coverflow__nav--prev" aria-label="<?php echo esc_attr__('Previous', 'bunbukan-europe'); ?>">
+							<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+						</button>
+						<button type="button" class="bb-coverflow__nav bb-coverflow__nav--next" aria-label="<?php echo esc_attr__('Next', 'bunbukan-europe'); ?>">
+							<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+						</button>
+						<div class="bb-coverflow__viewport">
+							<div class="bb-coverflow__track">
+								<?php foreach ($weapons as $index => $weapon) :
+									$img_src = !empty($weapon['image']) ? $weapon['image'] : $weapons_placeholder_svg($weapon['name'], $weapon['name_jp']);
+									?>
+									<article class="bb-coverflow__card" data-index="<?php echo (int) $index; ?>">
+										<div class="bb-coverflow__card-image">
+											<img src="<?php echo esc_url($img_src); ?>" alt="<?php echo esc_attr($weapon['name']); ?>" loading="lazy" />
+										</div>
+										<div class="bb-coverflow__card-overlay">
+											<h3 class="bb-coverflow__card-title-jp japanese-font"><?php echo esc_html($weapon['name_jp']); ?></h3>
+											<h4 class="bb-coverflow__card-title"><?php echo esc_html($weapon['name']); ?></h4>
+											<p class="bb-coverflow__card-desc"><?php echo esc_html($weapon['description']); ?></p>
+										</div>
+									</article>
+								<?php endforeach; ?>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</section>

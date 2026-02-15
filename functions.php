@@ -272,6 +272,12 @@ function bunbukan_scripts()
 		wp_enqueue_script('bunbukan-cookie-consent', get_template_directory_uri() . '/assets/js/cookie-consent.js', array(), $cookie_script_ver, true);
 	}
 
+	// Coverflow 3D (Weapons section) on front page only
+	if (is_front_page() && file_exists(get_template_directory() . '/assets/js/coverflow.js')) {
+		$coverflow_ver = (string) filemtime(get_template_directory() . '/assets/js/coverflow.js');
+		wp_enqueue_script('bunbukan-coverflow', get_template_directory_uri() . '/assets/js/coverflow.js', array(), $coverflow_ver, true);
+	}
+
 	if (is_singular() && comments_open() && get_option('thread_comments')) {
 		wp_enqueue_script('comment-reply');
 	}
