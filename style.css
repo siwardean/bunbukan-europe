@@ -1618,21 +1618,15 @@ a:hover {
 	color: var(--bb-text);
 }
 
-.bb-coverflow__card-title-jp {
-	font-family: var(--font-japanese);
-	font-size: 2.35rem;
-	color: var(--bb-red);
-	margin: 0 0 0.35rem;
-	line-height: 1.2;
-}
-
 .bb-coverflow__card-title {
 	font-family: var(--font-display);
-	font-size: 1.85rem;
+	font-size: 2.35rem;
 	letter-spacing: 0.08em;
 	text-transform: uppercase;
-	margin: 0 0 0.5rem;
-	color: var(--bb-white-pure);
+	margin: 0 0 0.65rem;
+	color: var(--bb-red);
+	text-align: center;
+	line-height: 1.2;
 }
 
 .bb-coverflow__card-desc {
@@ -1705,11 +1699,8 @@ a:hover {
 		width: 280px;
 		margin-left: -140px;
 	}
-	.bb-coverflow__card-title-jp {
-		font-size: 1.85rem;
-	}
 	.bb-coverflow__card-title {
-		font-size: 1.4rem;
+		font-size: 1.85rem;
 	}
 	.bb-coverflow__card-desc {
 		font-size: 0.9rem;

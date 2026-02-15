@@ -16,9 +16,9 @@
 		if (!cards.length) return;
 
 		var total = cards.length;
-		var half = total / 2; /* number of unique weapons; we have 2 copies */
-		/* Start in the middle of the first set so both sides show cards immediately */
-		var centerIndex = Math.floor(half / 2);
+		var setSize = total / 3; /* 6 weapons × 3 copies = 18 cards */
+		/* Start in the middle of the first set so both sides always have many cards */
+		var centerIndex = Math.floor(setSize / 2);
 		var spreadPx = 135;
 		var rotateDeg = 25;
 		var translateZ = 65;
@@ -51,16 +51,24 @@
 			prevBtn.addEventListener('click', function () {
 				var prevIndex = centerIndex;
 				centerIndex = (centerIndex - 1 + total) % total;
-				var wrapped = prevIndex === 0 && centerIndex === total - 1;
-				updateCards(wrapped);
+				/* When we wrap from 0 to end, jump to end of second set so the right never looks empty */
+				if (prevIndex === 0 && centerIndex === total - 1) {
+					centerIndex = setSize * 2 - 1;
+				}
+				var noTransition = prevIndex === 0 && centerIndex === setSize * 2 - 1;
+				updateCards(noTransition);
 			});
 		}
 		if (nextBtn) {
 			nextBtn.addEventListener('click', function () {
 				var prevIndex = centerIndex;
 				centerIndex = (centerIndex + 1) % total;
-				var wrapped = prevIndex === total - 1 && centerIndex === 0;
-				updateCards(wrapped);
+				/* When we wrap from end to 0, jump to start of second set so the left never looks empty */
+				if (prevIndex === total - 1 && centerIndex === 0) {
+					centerIndex = setSize;
+				}
+				var noTransition = prevIndex === total - 1 && centerIndex === setSize;
+				updateCards(noTransition);
 			});
 		}
 

@@ -101,13 +101,13 @@ function bunbukan_europe_prefill_homepage_fields($page_id)
 		$about_fields['about_mission_text'] = 'Technical depth and character development. Respect for tradition while fostering personal growth through the path of Ryūkyū Kobudō.';
 	}
 	if (!$pod->field('about_stat_1_value')) {
-		$about_fields['about_stat_1_value'] = '50';
+		$about_fields['about_stat_1_value'] = '20';
 	}
 	if (!$pod->field('about_stat_1_suffix')) {
 		$about_fields['about_stat_1_suffix'] = '+';
 	}
 	if (!$pod->field('about_stat_1_label')) {
-		$about_fields['about_stat_1_label'] = 'Years Teaching';
+		$about_fields['about_stat_1_label'] = 'Members';
 	}
 	if (!$pod->field('about_stat_2_value')) {
 		$about_fields['about_stat_2_value'] = '3';
@@ -116,7 +116,7 @@ function bunbukan_europe_prefill_homepage_fields($page_id)
 		$about_fields['about_stat_2_suffix'] = '';
 	}
 	if (!$pod->field('about_stat_2_label')) {
-		$about_fields['about_stat_2_label'] = 'Experienced Instructors';
+		$about_fields['about_stat_2_label'] = 'Certified Trainers';
 	}
 	if (!$pod->field('about_stat_3_value')) {
 		$about_fields['about_stat_3_value'] = '100';

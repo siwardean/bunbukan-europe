@@ -166,17 +166,17 @@ if (!function_exists('bunbukan_render_divider')) {
 					<div class="bb-about__stats">
 						<div class="bb-about__stat">
 							<div class="bb-about__stat-number">
-								<span class="bb-about__stat-number-value" data-count-target="50">0</span>
+								<span class="bb-about__stat-number-value" data-count-target="20">0</span>
 								<span class="bb-about__stat-number-suffix">+</span>
 							</div>
-							<p class="bb-about__stat-label"><?php echo esc_html__('Years Teaching', 'bunbukan-europe'); ?></p>
+							<p class="bb-about__stat-label"><?php echo esc_html__('Members', 'bunbukan-europe'); ?></p>
 						</div>
 						<div class="bb-about__stat">
 							<div class="bb-about__stat-number">
 								<span class="bb-about__stat-number-value" data-count-target="3">0</span>
 							</div>
 							<p class="bb-about__stat-label">
-								<?php echo esc_html__('Experienced Instructors', 'bunbukan-europe'); ?>
+								<?php echo esc_html__('Certified Trainers', 'bunbukan-europe'); ?>
 							</p>
 						</div>
 						<div class="bb-about__stat">
@@ -336,8 +336,8 @@ if (!function_exists('bunbukan_render_divider')) {
 							'image' => (function_exists('bunbukan_find_image') ? bunbukan_find_image('tinbe-rochin', array('/assets/images/weapons/')) : '') ?: bunbukan_attachment_url_by_slug('tinbe-rochin'),
 						),
 					);
-					// Duplicate for infinite loop (no visible start/end)
-					$weapons = array_merge($weapons, $weapons);
+					// Triple the list so we can always show cards on both sides (no visible end/start)
+					$weapons = array_merge($weapons, $weapons, $weapons);
 					// Placeholder SVG with weapon name when no image in assets/images/weapons/
 					$weapons_placeholder_svg = function ($name, $name_jp) {
 						$name = str_replace(array('&', '<', '>', '"'), array('&amp;', '&lt;', '&gt;', '&quot;'), $name);
@@ -363,8 +363,7 @@ if (!function_exists('bunbukan_render_divider')) {
 											<img src="<?php echo esc_url($img_src); ?>" alt="<?php echo esc_attr($weapon['name']); ?>" loading="lazy" />
 										</div>
 										<div class="bb-coverflow__card-overlay">
-											<h3 class="bb-coverflow__card-title-jp japanese-font"><?php echo esc_html($weapon['name_jp']); ?></h3>
-											<h4 class="bb-coverflow__card-title"><?php echo esc_html($weapon['name']); ?></h4>
+											<h3 class="bb-coverflow__card-title"><?php echo esc_html($weapon['name']); ?></h3>
 											<p class="bb-coverflow__card-desc"><?php echo esc_html($weapon['description']); ?></p>
 										</div>
 									</article>

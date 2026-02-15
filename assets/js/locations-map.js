@@ -58,6 +58,13 @@
 				country: 'Belgium'
 			},
 			{
+				name: 'Bunbukan Paris',
+				lat: 48.8566,
+				lng: 2.3522,
+				url: 'https://bunbukan.fr',
+				country: 'France'
+			},
+			{
 				name: 'Club Deportivo Kabuki',
 				lat: 40.4168, // Madrid, Spain (adjust if needed)
 				lng: -3.7038,
